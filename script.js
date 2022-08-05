@@ -86,6 +86,12 @@ $(".saveBtn").on("click", function() {
     // Update localStorage
     localStorage.setItem('dateStorage', JSON.stringify(schedule));
 
+    $("#status").css("visibility", "visible");
+
+    setTimeout(function() {
+        $("#status").css("visibility", "hidden");
+    }, 1000);
+
 });
 
 init();
