@@ -13,7 +13,9 @@ textarea{
   border-left: 1px solid black;
   padding: 10px;
   width: 100%;
-  margin-top: -3%;
+  /* The textarea overlaps with the other textareas unless I add this in
+  It might look ugly in different resolutions, but that's too bad. */
+  margin-top: -2.5%;
 }
 
 .jumbotron {
@@ -37,6 +39,8 @@ textarea{
   white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid white;
+  /* Divs are incredibly finnicky and I will not forgive them */
+  margin-bottom: 1px;
 }
 
 .hour {
