@@ -62,7 +62,6 @@ function init() {
         // and then put them in each textarea
 
         for (var i = 1; i < schedule.length; i++) {
-            console.log(eventTexts.eq(i-1));
             eventTexts.eq(i-1).val(schedule[i]);
         }
     }
