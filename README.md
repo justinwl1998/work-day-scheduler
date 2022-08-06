@@ -12,6 +12,10 @@ A website that has a schedule covering 9 AM to 5 PM, where events can be written
 
 * Any modern, supported internet browser that supports Javascript and jQuery.
 
+## Preview of Website
+
+![Website preview](/assets/preview.png)
+
 ## Author
 
 Created by Justin Liu.
