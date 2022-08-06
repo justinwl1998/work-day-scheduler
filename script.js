@@ -5,6 +5,7 @@ var eventTexts = $("textarea");
 // In the 0th index, the current date is there, to facillitate resetting the entire schedule if the day passes
 var schedule = [curDate, "", "", "", "", "", "", "", "", ""];
 
+// timeInterval for updating the schedule
 var dateUpdater = setInterval(function() {
 
     // update the date if the time ever passes
@@ -34,7 +35,7 @@ var dateUpdater = setInterval(function() {
         curHour = moment().format("HH");
     }
 
-}, 1000);
+}, 1000); // having this check every second is probably a bad idea, but this schedule has to update somehow
 
 function updateTimeblockStatus() {
     for (var i = 0; i < timeBlocks.length; i++) {
