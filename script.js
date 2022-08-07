@@ -2,13 +2,14 @@ var curDate = moment().format("dddd, MMMM Do");
 var curHour = moment().format("HH");
 var timeBlocks = $(".timeBlock");
 var eventTexts = $("textarea");
+
 // In the 0th index, the current date is there, to facillitate resetting the entire schedule if the day passes
 var schedule = [curDate, "", "", "", "", "", "", "", "", ""];
 
 // timeInterval for updating the schedule
 var dateUpdater = setInterval(function() {
 
-    // update the date if the time ever passes
+    // update the date if the time ever passes while the page is open
     if (moment().format("dddd, MMMM Do") !== curDate) {
         curDate = moment().format("dddd, MMMM Do")
         $("#currentDay").text(curDate);
@@ -30,7 +31,8 @@ var dateUpdater = setInterval(function() {
     }
 
     // update the timeblocks if the hour changes
-    if (moment().format("HH") != curHour) {
+    if (moment().format("HH") !== curHour) {
+        console.log("Hour has changed!")
         updateTimeblockStatus();
         curHour = moment().format("HH");
     }
@@ -60,6 +62,13 @@ function init() {
     else {
         // if it's defined, just retrieve the stored events in localStorage
         schedule = JSON.parse(localStorage.getItem('dateStorage'));
+
+        // checks if the date has changed since then
+        if (curDate !== schedule[0]) {
+            schedule = [curDate, "", "", "", "", "", "", "", "", ""]
+            localStorage.setItem('dateStorage', JSON.stringify(schedule));
+        }
+
         // and then put them in each textarea
 
         for (var i = 1; i < schedule.length; i++) {
