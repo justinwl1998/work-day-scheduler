@@ -38,7 +38,7 @@ var dateUpdater = setInterval(function() {
         return;
     }
 
-    updateTimeblockStatus();
+    updateTimeblockStatus(); // this is here just to make sure forcefully changing the timeblocks in the console fixes itself
 }, 1000); // having this check every second is probably a bad idea, but this schedule has to update somehow
 
 function updateTimeblockStatus() {
