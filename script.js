@@ -9,7 +9,7 @@ var schedule = [curDate, "", "", "", "", "", "", "", "", ""];
 // timeInterval for updating the schedule
 var dateUpdater = setInterval(function() {
 
-    // update the date if the time ever passes while the page is open
+    // update the date if the time ever passes while the page is open, this is pretty difficult to test but all for the sake of being forward thinking
     if (moment().format("dddd, MMMM Do") !== curDate) {
         curDate = moment().format("dddd, MMMM Do")
         $("#currentDay").text(curDate);
@@ -35,14 +35,21 @@ var dateUpdater = setInterval(function() {
         console.log("Hour has changed!")
         updateTimeblockStatus();
         curHour = moment().format("HH");
+        return;
     }
 
+    updateTimeblockStatus();
 }, 1000); // having this check every second is probably a bad idea, but this schedule has to update somehow
 
 function updateTimeblockStatus() {
     for (var i = 0; i < timeBlocks.length; i++) {
+        var curBlock = timeBlocks.eq(i).children().eq(1);
+        
+        // removes the past, present and future classes, this prevents multiple classes from being added
+        curBlock.removeClass("past present future");
+
         // Set timeblock status based on it if is before, during or after an hour
-        if (moment().isBefore(moment({ hour:9+i, minute: 0 }))) {
+        if (moment().hour() < 9+i) {
             timeBlocks.eq(i).children().eq(1).addClass("future");
         }
         else if (moment().hour() === 9+i) {
